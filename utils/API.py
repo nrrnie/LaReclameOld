@@ -18,3 +18,17 @@ class API:
         if response['status'] == 'ok':
             return 'ok'
         return response['error']
+
+    def login(self, username: str, password: str) -> str:
+        url = self.host + '/auth/login'
+        data = dict(username=username, password=password)
+
+        try:
+            response = post(url, data=data).json()
+        except RequestException:
+            return 'Request error'
+
+        if response['status'] == 'ok':
+            return 'ok'
+
+        return response['error']

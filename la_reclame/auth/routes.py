@@ -18,3 +18,19 @@ def registration():
         return 'registered'
 
     return render_template('registration.html')
+
+
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+
+    username = request.form.get('username', '')
+    password = request.form.get('password', '')
+
+    response = api.login(username, password)
+
+    if response == 'ok':
+        return 'main page'
+
+    return render_template('login.html')

@@ -19,34 +19,34 @@
       
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Log in</p>
       
-                      <form class="mx-1 mx-md-4">
+                      <form class="mx-1 mx-md-4" method="POST">
       
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <label class="form-label" for="form3Example4cd">Enter email or username</label>
-                            <input type="text" id="form3Example1c" class="form-control" placeholder="Enter  email or username"/>
+                            <label class="form-label">Enter email or username</label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter  email or username"/>
                           </div>
                         </div>
       
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <label class="form-label" for="form3Example4cd">Enter password</label>
-                            <input type="email" id="form3Example3c" class="form-control" placeholder="Enter password"/>
+                            <label class="form-label">Enter password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Enter password"/>
                           </div>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-4">
                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                             <div class="pl-5">
-                                <p><a href="registration.html" class="link-secondary" > You don't have an account yet  ?</a></p>
+                                <p><a href="{{ url_for('auth.registration') }}" class="link-secondary" > You don't have an account yet  ?</a></p>
                             </div>
                         </div>
                         
                         
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="button" class="btn btn-primary btn-lg">Log in</button>
+                          <button class="btn btn-primary btn-lg">Log in</button>
                         </div>
 
                       </form>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-md-10 col-lg-6 col-xl-5 d-flex align-items-center order-1 order-lg-2">
       
-                      <img src="logo.png" class="img-fluid" alt="Sample image">
+                      <img src="static/logo.png" class="img-fluid" alt="Sample image">
       
                     </div>
                   </div>
