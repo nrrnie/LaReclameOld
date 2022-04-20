@@ -15,7 +15,8 @@ def registration():
 
     if None in [username, email, password]:
         flash('Not all data was given')
-    if not email.find('@astanait.edu.kz')
+    if not email.find('@astanait.edu.kz'):
+        flash('University e-mail address is required.')
 
     response = api.register_user(username, email, password)
     if response == 'ok':
