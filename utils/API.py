@@ -34,7 +34,12 @@ class API:
         return response['error']
 
     def find_user_by_id(self, user_id: int) -> dict:
-        link = self.host + '/users/user_by_id/%d' % user_id
+        link = self.host + '/users/user_by_id/{}'.format(user_id)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response
+
+    def find_user_by_username(self, user_name: str) -> dict:
+        link = self.host + '/users/user_by_username/{}'.format(user_name)
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response
 
