@@ -33,6 +33,10 @@ class API:
 
         return response['error']
 
+    def find_user_by_id(self, user_id: int) -> dict:
+        link = self.host + '/users/user_by_id/%d' % user_id
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response
 
     @staticmethod
     def safe_request(link: str, data: dict = None) -> dict:
