@@ -13,6 +13,10 @@ def registration():
     password = request.form.get('password', '')
     email = request.form.get('email', '')
 
+    if None in [username, email, password]:
+        flash('Not all data was given')
+    if not email.find('@astanait.edu.kz')
+
     response = api.register_user(username, email, password)
     if response == 'ok':
         return 'registered'

@@ -32,3 +32,11 @@ class API:
             return 'ok'
 
         return response['error']
+
+
+    @staticmethod
+    def safe_request(link: str, data: dict = None) -> dict:
+        try:
+            response = post(link, data=data).json()
+        except RequestException:
+            return {'status': 'error', 'response': response}
