@@ -32,3 +32,25 @@ class API:
             return 'ok'
 
         return response['error']
+
+    def find_user_by_id(self, user_id: int) -> dict:
+        link = self.host + '/users/user_by_id/{}'.format(user_id)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response
+
+    def find_user_by_username(self, user_name: str) -> dict:
+        link = self.host + '/users/user_by_username/{}'.format(user_name)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response
+
+    def find_user_by_email(self, user_email: str) -> dict:
+        link = self.host + '/users/user_by_email/{}'.format(user_email)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response
+
+    @staticmethod
+    def safe_request(link: str, data: dict = None) -> dict:
+        try:
+            response = post(link, data=data).json()
+        except RequestException:
+            return {'status': 'error', 'response': response}
