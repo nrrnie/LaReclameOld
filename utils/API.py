@@ -43,6 +43,11 @@ class API:
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response
 
+    def find_user_by_email(self, user_email: str) -> dict:
+        link = self.host + '/users/user_by_email/{}'.format(user_email)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response
+
     @staticmethod
     def safe_request(link: str, data: dict = None) -> dict:
         try:
