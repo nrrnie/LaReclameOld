@@ -8,12 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-  {% for message in get_flashed_messages() %}
-        <ul class="flashes">
-            <li>{{ message }}</li>
-        </ul>
-    {% endfor %}
     <section class="vh-100" style="background-color: #eee;">
+      {% for message in get_flashed_messages() %}
+          <ul class="flashes">
+              <li>{{ message }}</li>
+          </ul>
+      {% endfor %}
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -46,7 +46,7 @@
                           <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                             <label class="form-label">Enter password</label>
-                            <input type="password" name="password" class="form-control" placeholder="at least 6 characters"/>
+                            <input type="password" name="password" class="form-control" placeholder="at least 8 characters"/>
                           </div>
                         </div>
       
