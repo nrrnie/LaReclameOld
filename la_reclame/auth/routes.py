@@ -1,4 +1,5 @@
 from flask import request, render_template, flash, get_flashed_messages
+from flask import session, redirect, url_for
 
 from la_reclame.auth import auth
 from utils import api
@@ -41,6 +42,9 @@ def registration():
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    if session.get('user') is not None:
+        return redirect(url_for('users.profile'))
+
     if request.method == 'GET':
         return render_template('login.html')
 
@@ -49,7 +53,10 @@ def login():
 
     response = api.login(username, password)
     if response['status'] == 'ok':
-        return 'main page'
+        response = api.find_user_by_username(username)
+        if response['status'] == 'ok':
+            session['user'] = response['user']
+        return redirect(url_for('users.profile'))
 
     flash(response['error'])
     return render_template('login.html')
