@@ -43,7 +43,7 @@ def registration():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if session.get('user') is not None:
-        return redirect(url_for('users.profile'))
+        return redirect(url_for('users.profile', username=session['user']['username']))
 
     if request.method == 'GET':
         return render_template('login.html')
