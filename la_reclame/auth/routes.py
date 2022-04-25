@@ -7,6 +7,9 @@ from utils import api
 
 @auth.route('/registration', methods=['GET', 'POST'])
 def registration():
+    if session.get('user') is not None:
+        return redirect(url_for('users.profile', username=session['user']['username']))
+
     if request.method == 'GET':
         return render_template('registration.html')
 
