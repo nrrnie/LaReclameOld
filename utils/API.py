@@ -8,30 +8,16 @@ class API:
         self.host = 'http://127.0.0.1:5001'
 
     def register_user(self, username: str, email: str, password: str) -> str:
-        url = self.host + '/auth/add/user'
+        link = self.host + '/auth/add/user'
         data = dict(username=username, email=email, password=password)
-        try:
-            response = post(url, data=data).json()
-        except RequestException:
-            return 'Request error'
-
-        if response['status'] == 'ok':
-            return 'ok'
-        return response['error']
+        response = API.safe_request(link, data=data)
+        return response if response['status'] == 'error' else response['response']
 
     def login(self, username: str, password: str) -> str:
-        url = self.host + '/auth/login'
+        link = self.host + '/auth/login'
         data = dict(username=username, password=password)
-
-        try:
-            response = post(url, data=data).json()
-        except RequestException:
-            return 'Request error'
-
-        if response['status'] == 'ok':
-            return 'ok'
-
-        return response['error']
+        response = API.safe_request(link, data=data)
+        return response if response['status'] == 'error' else response['response']
 
     def find_user_by_id(self, user_id: int) -> dict:
         link = self.host + '/users/user_by_id/{}'.format(user_id)
@@ -47,7 +33,6 @@ class API:
         link = self.host + '/users/user_by_email/{}'.format(user_email)
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response['response']
-
 
     # items
     def create_item(self, username:str, title: str, body: str):
@@ -80,4 +65,6 @@ class API:
         try:
             response = post(link, data=data).json()
         except RequestException:
-            return {'status': 'error', 'response': response}
+            return dict(status='error', error='API error')
+
+        return dict(status='ok', response=response)
