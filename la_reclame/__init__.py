@@ -1,10 +1,15 @@
 from flask import Flask, redirect, url_for
+from flask_session import Session
 from config import Config
+
+sess = Session()
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    sess.init_app(app)
 
     from la_reclame.auth import auth
     app.register_blueprint(auth, url_prefix='/auth')
