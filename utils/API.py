@@ -34,6 +34,32 @@ class API:
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response['response']
 
+    # items
+    def create_item(self, username:str, title: str, body: str):
+        link = self.host + '/items/add/item'
+        data = dict(username=username, title=title, body=body)
+        try:
+            response = post(link, data=data).json()
+        except RequestException:
+            return 'Request error'
+
+        return response if response['status'] == 'error' else response['response']
+
+    def find_item_by_id(self, item_id: int):
+        link = self.host + '/items/item_by_id/{}'.format(item_id)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response['response']
+
+    def find_item_by_username(self, item_username: str):
+        link = self.host + '/items/item_by_username/{}'.format(item_username)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response['response']
+
+    def find_item_by_title(self, item_title: str):
+        link = self.host + '/items/item_by_title/{}'.format(item_title)
+        response = API.safe_request(link)
+        return response if response['status'] == 'error' else response['response']
+
     @staticmethod
     def safe_request(link: str, data: dict = None) -> dict:
         try:
