@@ -15,10 +15,10 @@
 </div>
 {% endmacro %}
 
-{% macro no_items() %}
+{% macro empty_card(msg) %}
 <div class="card">
     <div class="card-body">
-        <h5 class="d-flex align-items-center mb-3">There are no items yet.</h5>
+        <h5 class="d-flex align-items-center mb-3">{{ msg }}</h5>
         <hr class="my-3">
     </div>
 </div>
