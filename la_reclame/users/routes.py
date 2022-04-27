@@ -9,6 +9,7 @@ def profile(username: str):
     response = api.find_user_by_username(username)
     if response['status'] == 'ok':
         user = response['user']
-        return render_template('profile.html', user=user)
+        items = api.find_item_by_username(user['username'])['items']
+        return render_template('profile.html', user=user, items=items)
 
     return response['error']
