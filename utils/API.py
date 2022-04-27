@@ -50,12 +50,12 @@ class API:
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response['response']
 
-    def find_item_by_username(self, item_username: str):
+    def find_items_by_username(self, item_username: str):
         link = self.host + '/items/item_by_username/{}'.format(item_username)
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response['response']
 
-    def find_item_by_title(self, item_title: str):
+    def find_items_by_title(self, item_title: str):
         link = self.host + '/items/item_by_title/{}'.format(item_title)
         response = API.safe_request(link)
         return response if response['status'] == 'error' else response['response']

@@ -2,8 +2,8 @@ from flask import request, render_template, flash, get_flashed_messages
 from flask import session, redirect, url_for
 
 from la_reclame.auth import auth
+from la_reclame.users import users
 from utils import api
-
 
 @auth.route('/registration', methods=['GET', 'POST'])
 def registration():
@@ -59,7 +59,7 @@ def login():
         response = api.find_user_by_username(username)
         if response['status'] == 'ok':
             session['user'] = response['user']
-        return redirect(url_for('users.profile'))
+        return redirect(url_for('users.profile', username=username))
 
     flash(response['error'])
     return render_template('login.html')
