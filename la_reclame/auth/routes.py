@@ -40,7 +40,7 @@ def registration():
         return render_template('registration.html')
 
     register_user(username, email, password)
-    return 'main page'
+    return redirect(url_for('auth.login'))
 
 
 @auth.route('/login', methods=['GET', 'POST'])
