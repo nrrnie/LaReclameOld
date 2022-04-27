@@ -10,6 +10,6 @@ def profile(username: str):
     if response['status'] == 'ok':
         user = response['user']
         items = api.find_items_by_username(user['username'])['items']
-        return render_template('profile.html', user=user, items=items)
+        return render_template('profile.html', user=user, items=items, reviews=[])
 
     return response['error']
