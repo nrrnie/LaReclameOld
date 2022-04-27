@@ -59,7 +59,7 @@ def login():
         response = api.find_user_by_username(username)
         if response['status'] == 'ok':
             session['user'] = response['user']
-        return redirect(url_for('users.profile'))
+        return redirect(url_for('users.profile', username=session['user']['username']))
 
     flash(response['error'])
     return render_template('login.html')
