@@ -43,7 +43,7 @@ class API:
         except RequestException:
             return 'Request error'
 
-        return response if response['status'] == 'error' else response['response']
+        return response
 
     def find_item_by_id(self, item_id: int):
         link = self.host + '/items/item_by_id/{}'.format(item_id)

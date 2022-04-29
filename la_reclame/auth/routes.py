@@ -1,5 +1,6 @@
 from flask import request, render_template, flash, get_flashed_messages
 from flask import session, redirect, url_for
+from flask_session import Session
 
 from la_reclame.auth import auth
 from la_reclame.users import users
@@ -64,6 +65,10 @@ def login():
     flash(response['error'])
     return render_template('login.html')
 
+@auth.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.clear()
+    return redirect(url_for('main'))
 
 def check_passwords(password: str, password_confirm: str) -> bool:
     is_ok = True
